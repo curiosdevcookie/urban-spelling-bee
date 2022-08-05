@@ -8,33 +8,40 @@ const options = {
 };
 
 const APIurl = 'https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=';
+const term = "cougar";
 
-function fetchDefinition(term) {
-  return fetch(APIurl + term, options)
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      const definition = data.definition;
-
-      if (definition) {
-        return definition;
-      } else {
-        return 'No definition found';
-      }
-    })
-    .catch(err => {
-      return 'Error fetching definition';
-    }
-    );
+async function fetchData() {
+  const response = await fetch(APIurl + term, options);
+  const data = await response.json();
+  console.log(data);
 }
+
+
+fetchData();
+console.log(response.status, response.statusText);
+  // .then(response => {
+  //   return response.json();
+  // })
+  // .then(data => {
+  //   const definition = data.definition;
+
+  //   if (definition) {
+  //     return definition;
+  //   } else {
+  //     return 'No definition found';
+  //   }
+  // })
+  // .catch(() => {
+  //   return 'Error fetching definition';
+  // }
+  // );
+
 
 // document.selectElement('#inputPlaceholder').addEventListener('submit', function (e) {
-function submit() {
-  const input = document.getElementById('inputPlaceholder');
-  let term = input.value;
+// function submit() {
+//   const input = document.getElementById('inputPlaceholder');
 
-}
+// }
 
   // fetch('https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=cougar', options)
   //   .then(response => response.json())
