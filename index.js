@@ -12,13 +12,16 @@ const term = "cougar";
 
 async function fetchData() {
   const response = await fetch(APIurl + term, options);
-  const data = await response.json();
-  console.log(data);
+  if (!response.ok) {
+    console.log(response.status, response.statusText);
+  } else {
+    const data = await response.json();
+    console.log(data);
+  }
 }
 
-
 fetchData();
-console.log(response.status, response.statusText);
+
   // .then(response => {
   //   return response.json();
   // })
