@@ -1,17 +1,38 @@
 const APIurl = 'https://api.urbandictionary.com/v0/define?term=';
 
+const controller = new AbortController()
+const signal = controller.signal
+
+function abortFetching() {
+  console.log('Now aborting');
+  controller.abort()
+}
+
+function setInnerHTMLtextarea(id, APIValue) {
+  const term = document.getElementById('input-word').value;
+  fetchData(term);
+  document.getElementById(id).innerHTML = APIValue;
+  abortFetching()
+}
 
 async function fetchData(term) {
-  const response = await fetch(APIurl + term);
+  const response = await fetch(APIurl + term, {
+    method: 'get',
+    signal: signal,
+  });
   if (!response.ok) {
     console.log(response.status, response.statusText);
   } else {
     const {
       list: [{
-        definition, example
+        definition,
+        example,
       }]
     } = await response.json();
     console.log(definition, example);
+
+    setInnerHTMLtextarea('definition-area', definition);
+    setInnerHTMLtextarea('example-area', example);
   }
 }
 
@@ -38,7 +59,7 @@ const letter7 = document.getElementById('b7');
 letter7.addEventListener('click', letterValueInput);
 
 function letterValueInput() {
-  const input = document.getElementById('inputPlaceholder');
+  const input = document.getElementById('input-word');
   input.value += this.innerText;
 }
 
@@ -46,7 +67,7 @@ const deleteButton = document.getElementById('delete');
 deleteButton.addEventListener('click', deleteLetter);
 
 function deleteLetter() {
-  const input = document.getElementById('inputPlaceholder');
+  const input = document.getElementById('input-word');
   input.value = input.value.slice(0, -1);
 };
 
@@ -54,16 +75,12 @@ const buttonSubmit = document.getElementById('submit');
 buttonSubmit.addEventListener('click', submitWord);
 
 function submitWord() {
-  const term = document.getElementById('inputPlaceholder').value;
+  const term = document.getElementById('input-word').value;
   fetchData(term);
 }
 
-const buttonDefinition = document.getElementById('wordDefinitionButton');
-buttonDefinition.addEventListener('click', definitionClick);
+const buttonDefinition = document.getElementById('word-definition-button');
+buttonDefinition.addEventListener('click', setInnerHTMLtextarea);
 
-function definitionClick() {
-  const definitionWord = document.getElementById('inputPlaceholder').value;
-  fetchData(definitionWord);
-  const definitionArea = document.getElementById('definitionArea');
-  definitionArea.innerText = `${definition}`;
-};
+const buttonExample = document.getElementById('word-example-button');
+buttonExample.addEventListener('click', setInnerHTMLtextarea);
