@@ -6,6 +6,7 @@
 
   }
 
-  br{
-    outline-style: 1rem solid darkblue;
+#input-word:read-only{
+  background-color: darkblue;
   }
+
