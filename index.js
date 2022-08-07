@@ -8,10 +8,10 @@ async function fetchData(term) {
   } else {
     const {
       list: [{
-        definition
+        definition, example
       }]
     } = await response.json();
-    console.log(definition);
+    console.log(definition, example);
   }
 }
 
@@ -58,7 +58,7 @@ function submitWord() {
   fetchData(term);
 }
 
-const buttonDefinition = document.getElementById('wordDefinition');
+const buttonDefinition = document.getElementById('wordDefinitionButton');
 buttonDefinition.addEventListener('click', definitionClick);
 
 function definitionClick() {
