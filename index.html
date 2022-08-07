@@ -19,6 +19,7 @@
   <main>
 
     <section id='letters'>
+      <h2>Your letters for today</h2>
       <button id='b1'>A</button>
       <button id='b2'>B</button>
       <button id='b3'>C</button>
@@ -28,34 +29,39 @@
       <button id='b7'>G</button>
     </section>
 
-    <section id='delete-input'>
+    <section id='user-input'>
+      <h2>User Input</h2>
       <button id='delete' type='button'>Delete Letter</button>
-    </section>
-
-    <section id='word-input'>
-      <input id='input-word' type='text' placeholder='Your word goes in here' />
-    </section>
-
-    <section id='submit-word'>
+      <input id='input-word' type='text' placeholder='Your word goes in here' readonly />
       <button id='submit' type='button'>Submit Word</button>
     </section>
 
-    <section id='score'>
-      <p>Score: <span id='score-value'>0</span></p>
-    </section>
-
+  
     <section id='definition-section'>
+      <h2>Definitions and Examples</h2>
       <button id='word-definition-button' type='button'>Get definition</button>
       <label for='definition-area'></label>
       <textarea id='definition-area' name='definition-area'></textarea>
-    </section>
-
-    <section id='example-section'>
+ 
       <button id='word-example-button' type='button'>See Example</button>
       <label for='example-area'></label>
       <textarea id='example-area' name='example-area'></textarea>
+      
+      <p>Source: <span id='source'></span></p>
     </section>
 
+    <section id='word-list'>
+      <h2>Word List</h2>
+      <ul>
+        <li></li>
+      </ul>
+    </section>
+
+    <section id='score'>
+      <h2>Score</h2>
+      <p>Score: <span id='score-value'>0</span></p>
+    </section>
+    
   </main>
 
   <footer>

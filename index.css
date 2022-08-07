@@ -1,12 +1,21 @@
+ @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
 :root{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-size: 62.5%;
 
+  --font-headings:Merriweather;
   }
 
 #input-word:read-only{
   background-color: darkblue;
+  color: white;
   }
 
+h1, h2, h3, h4, h5, h6{
+  font-family: var(--font-headings);
+  text-transform: capitalize;
+  padding-top: 3rem;
+  }
