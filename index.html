@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang='en'>
 <head>
   <meta charset='UTF-8'>
@@ -7,7 +8,8 @@
 
   <link rel='stylesheet' href='./index.css' type='text/css' media='screen' />
   <script src='./index.js' type='module'></script>
-  
+  <!-- <script src='https://github.com/curiosdevcooki/curiosdevcookie-portfolio/blob/d05042ec67f95d5dee8816d600bcec13286b3f2b/components/footer/cdc-footer.js' type='module'></script> -->
+
 </head>
 <body>
   <header>
@@ -15,6 +17,7 @@
   </header>
 
   <main>
+
     <section id='letters'>
       <button id='b1'>A</button>
       <button id='b2'>B</button>
@@ -25,15 +28,40 @@
       <button id='b7'>G</button>
     </section>
 
-  <section id='placeholder'>
-    <label for='user-input'></label>
-    <input id='inputPlaceholder' type='text' name='userInput' placeholder='Type your word here' />
-    <button id='submit' type='button'>Submit</button>
-  </section>
+  <br />
+
+    <section id='deleteLetterInput'>
+      <button id='delete' type='button'>Delete Letter</button>
+    </section>
+
+    <section id='wordInput'>
+      <input id='inputPlaceholder' type='text' name='userInput' placeholder='Your word goes in here' />
+    </section>
+
+    <section id='submitWord'>
+      <button id='submit' type='button'>Submit Word</button>
+    </section>
+
+  <br />
+    <section id='score'>
+      <p>Score: <span id='score-value'>0</span></p>
+    </section>
+
+    <section id='definitionSection'>
+      <button id='wordDefinitionButton' type='button'>Get definition</button>
+      <label for='definitionArea'></label>
+      <textarea id='definitionArea' name='definitionArea'></textarea>
+    </section>
+
+     <section id='exampleSection'>
+      <button id='wordExampleButton' type='button'>See Example</button>
+      <label for='wordExample'></label>
+      <textarea id='wordExample' name='exampleArea'></textarea>
+    </section>
   </main>
 
   <footer>
-
+  <cdc-footer></cdc-footer>
   </footer>
 </body>
 </html>
