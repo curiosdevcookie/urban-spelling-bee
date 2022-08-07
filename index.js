@@ -7,7 +7,6 @@ function abortFetching() {
   console.log('Now aborting');
   controller.abort()
 }
-
 function setInnerHTMLtextarea(id, APIValue) {
   const term = document.getElementById('input-word').value;
   fetchData(term);
@@ -27,12 +26,15 @@ async function fetchData(term) {
       list: [{
         definition,
         example,
+        permalink
       }]
     } = await response.json();
+
     console.log(definition, example);
 
     setInnerHTMLtextarea('definition-area', definition);
     setInnerHTMLtextarea('example-area', example);
+    setInnerHTMLtextarea('source', permalink);
   }
 }
 
@@ -84,3 +86,4 @@ buttonDefinition.addEventListener('click', setInnerHTMLtextarea);
 
 const buttonExample = document.getElementById('word-example-button');
 buttonExample.addEventListener('click', setInnerHTMLtextarea);
+
