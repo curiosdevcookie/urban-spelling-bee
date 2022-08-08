@@ -62,7 +62,7 @@ letter7.addEventListener('click', letterValueInput);
 
 function letterValueInput() {
   const input = document.getElementById('input-word');
-  input.value += this.innerText;
+  input.value += this.getElementsByTagName("text")[0].textContent;
 }
 
 const deleteButton = document.getElementById('delete');
