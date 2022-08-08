@@ -8,10 +8,29 @@
 
   --font-headings:Merriweather;
   }
+/* #letters{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  background-color: #f5f5f5;
+} */
 
-#input-word:read-only{
+body{
+  background-color: #FFF545;
+  text-align: center;
+}
+
+#input-word{
   background-color: darkblue;
   color: white;
+  pointer-events: none;
+  }
+
+#input-word:invalid{
+  background-color: red;
   }
 
 h1, h2, h3, h4, h5, h6{
@@ -19,3 +38,24 @@ h1, h2, h3, h4, h5, h6{
   text-transform: capitalize;
   padding-top: 3rem;
   }
+
+
+svg{
+  width: 30vw;
+  height: auto;
+  }
+
+  svg > g{
+    cursor: pointer;
+  }
+
+  #_x3C_PolygonBG_x3E_{
+    cursor: none;
+  }
+
+  /* .dynamic {
+  width: 10px;
+  height: 10px;
+  background: yellow;
+  position: absolute;
+} */
