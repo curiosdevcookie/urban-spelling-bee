@@ -3,5 +3,5 @@
 This is a version of the game Spelling Bee with the Urban Dictionary as its lexicon.
 
 
-This is a work-in-progress, take a sneak peak here: https://curiosdevcooki.github.io/urban-spelling-bee/
+This is still a work-in-progress, take a sneak peak here: https://curiosdevcookie.github.io/urban-spelling-bee/
 
