@@ -60,6 +60,7 @@ letter6.addEventListener('click', letterValueInput);
 const letter7 = document.getElementById('b7');
 letter7.addEventListener('click', letterValueInput);
 
+
 function letterValueInput() {
   const input = document.getElementById('input-word');
   input.value += this.getElementsByTagName("text")[0].textContent;
@@ -75,6 +76,7 @@ function deleteLetter() {
 
 const buttonSubmit = document.getElementById('submit');
 buttonSubmit.addEventListener('click', submitWord);
+buttonSubmit.addEventListener('click', appendWord);
 
 function submitWord() {
   const term = document.getElementById('input-word').value;
@@ -87,3 +89,14 @@ buttonDefinition.addEventListener('click', setInnerHTMLtextarea);
 const buttonExample = document.getElementById('word-example-button');
 buttonExample.addEventListener('click', setInnerHTMLtextarea);
 
+//wordlist
+
+function appendWord() {
+  const wordListElement = document.createElement('li');
+
+  const word = document.createTextNode('test-term');
+
+  wordListElement.appendChild(word);
+
+  document.getElementById('word-list').appendChild(wordListElement);
+}
