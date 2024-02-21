@@ -12,3 +12,7 @@ __pycache__
 
 # ssh
 .ssh
+
+
+# personal
+static/video/screencast_CS50.mp4
