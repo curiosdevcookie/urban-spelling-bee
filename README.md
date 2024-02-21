@@ -4,11 +4,7 @@ We love playing the [Spelling Bee of the NY Times](https://www.nytimes.com/puzzl
 
 So I thaught that this would make a fun challenge for me to implement. To give it a little spin, this is Spelling Bee with the Urban Dictionary as its lexicon: [Urban Spelling Bee](https://urban-spelling-bee.fly.dev).
 
-<<<<<<< Updated upstream
-This is still a work-in-progress, take a sneak peak here: https://curiosdevcookie.github.io/urban-spelling-bee/
-=======
 Also, as I'm not an English native speaker, I thought to learn a thing or two, the player is provided with the definition of the word if the word is found in the dictionary.
->>>>>>> Stashed changes
 
 _Protips_:
 
