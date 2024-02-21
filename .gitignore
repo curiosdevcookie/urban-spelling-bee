@@ -1,0 +1,14 @@
+.DS_Store
+.trunk
+/.hintrc
+.vscode/
+.vscode/settings.json
+dictionary.db
+log.sql
+
+# Byte-compiled / optimized / DLL files
+__pycache__
+*.py[cod]
+
+# ssh
+.ssh
