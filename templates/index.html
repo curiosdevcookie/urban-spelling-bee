@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+    <title>Urban Spelling Bee</title>
+
+    <!-- Create a jump button to jump to the text-anchor section "instructions": -->
+    <link rel='stylesheet' href='{{ url_for('static', filename='css/index.css' )
+      }}'>
+    <link rel='icon' href='{{ url_for('static', filename='images/favicon.ico' )
+      }}' type='image/x-icon'>
+    <script src='{{ url_for('static', filename='js/index.js' ) }}' type='module'></script>
+    <script src='{{ url_for('static',
+      filename='js/components/cdc-footer.js' ) }}' type='module'></script>
+    <script src='{{ url_for('static',
+      filename='js/components/github-repo.js' ) }}' type='module'></script>
+  </head>
+  <body>
+    <header>
+      <h1>Urban Spelling Bee</h1>
+      <p hidden id = "randomSeven">{{ random_seven }}</p>
+      <github-repo></github-repo>
+      <section id='spinner'>
+        <svg version='1.1' id='spinnerBee' xmlns="http://www.w3.org/2000/svg" viewBox='0 0 100 100'>
+            <title>Illustration of a Bee</title>
+            <defs>
+              <lineargradient
+                id="linearGradient3068"
+                x1="45.1"
+                gradientUnits="userSpaceOnUse"
+                x2="84.952"
+                y1="61.154"
+                y2="61.154">
+                <stop
+                  id="stop15924-76"
+                  stop-color="var(--color-white)"
+                  offset="0" />
+                <stop
+                  id="stop15926-1"
+                  stop-color="#a2ffff"
+                  offset="1" />
+              </lineargradient>
+              <lineargradient
+                id="linearGradient3172"
+                x1="45.1"
+                gradientUnits="userSpaceOnUse"
+                y1="61.154"
+                gradientTransform="matrix(-1 0 0 1 94.032 -1.3066)"
+                x2="84.952"
+                y2="61.154">
+                <stop
+                  id="stop15924-2"
+                  stop-color="var(--color-white)"
+                  offset="0" />
+                <stop
+                  id="stop15926-2"
+                  stop-color="#a2ffff"
+                  offset="1" />
+              </lineargradient>
+            </defs>
+            <g
+              id="layer1">
+              <g
+                id="g3950">
+                <path
+                  id="path15590"
+                  stroke-width="1.8"
+                  stroke="var(--color-graphite)"
+                  transform="matrix(-1.2212 0 0 1.2212 119.97 -17.864)"
+                  d="m75.2 43.2a10.4 10.4 0 1 1 -20.8 0 10.4 10.4 0 1 1 20.8 0z" />
+                <path
+                  id="path15590-7"
+                  stroke="var(--color-graphite)"
+                  stroke-width="1.8"
+                  fill="var(--color-yellow)"
+                  d="m39.599 58.252c2.651 12.903 14.854 24.579 27.255 26.078 12.401 1.5 20.305-7.744 17.654-20.648-2.652-12.903-14.854-24.578-27.256-26.078-12.401-1.499-20.304 7.745-17.653 20.648z" />
+                <path
+                  id="path14800"
+                  stroke="var(--color-graphite)"
+                  stroke-width="1.8"
+                  fill="url(#linearGradient3172)"
+                  d="m48.032 44.493c-18.6 1.6-46.132 11.217-35.8 26s31-8.4 35.8-26z" />
+                <path
+                  id="path15630"
+                  style="color:var(--color-yellow);text-transform:none;text-indent:0"
+                  d="m70.188 42.818c2.1876 1.5259 4.2297 3.3109 6.0625 5.3125-1.6387 0.12654-3.55 0.29768-5.7188 0.59375-5.408 0.73828-11.766 2.2611-14.781 4.3125l-0.125 0.09375c-2.9597 2.0849-6.8656 7.6626-9.7188 12.688-0.64133 1.1295-1.2095 2.1918-1.75 3.2188-1.4291-2.1934-2.6088-4.5238-3.4688-6.9375 2.0446-6.0895 4.5469-12.949 9.0312-16 4.5252-3.0791 12.419-3.3262 19.062-3.2812 0.8146 0.0055 0.65187-0.0039 1.4062 0zm10.281 10.906c1.1219 1.8295 2.0776 3.7435 2.8125 5.7188-1.1796 0.11523-2.4434 0.25486-3.7812 0.4375-5.6618 0.77294-12.312 2.3523-15.469 4.5l-0.15625 0.09375c-3.0986 2.1827-7.1692 8.0205-10.156 13.281-0.17312 0.3049-0.3019 0.57493-0.46875 0.875-1.8169-1.3304-3.5306-2.8346-5.0938-4.5 2.1553-6.434 4.8089-13.766 9.5625-17 4.7376-3.2236 12.982-3.4533 19.938-3.4062 1.6259 0.01099 1.4328-0.0051 2.8125 0zm4.2812 11.344c0.25363 1.6902 0.32088 3.3108 0.21875 4.8438-4.3964 0.61259-9.4961 1.8388-11.938 3.5l-0.09375 0.09375c-2.425 1.7082-5.6311 6.2579-7.9688 10.375-0.02442 0.043-0.03824 0.08211-0.0625 0.125-1.6152-0.33228-3.2105-0.82464-4.7812-1.4688 0.16236-0.46518 0.30468-0.8847 0.46875-1.375 1.6925-5.0575 3.7568-10.859 7.5-13.406 3.7077-2.5228 10.182-2.7243 15.625-2.6875 0.59678 0.004 0.47333-0.0031 1.0312 0z" />
+                <path
+                  id="path14800-1"
+                  style="color:var(--color-yellow)"
+                  d="m48.729 45.412c-11.846 9.186-26.222 27.672-12.811 33.138s17.245-19.176 12.811-33.138z"
+                  stroke="var(--color-graphite)"
+                  stroke-width="1.8"
+                  fill="url(#linearGradient3172)" />
+                <path
+                  id="path15841"
+                  stroke="var(--color-graphite)"
+                  stroke-width="1px"
+                  d="m29.332 30.093c-9.875-0.2-11.102-1.0525-13.15 1.675-2.0477 2.7275-3.1495 7.2871-0.6 7.3 2.5495 0.01295 2.405-4.5076 3.1434-6.3622 0.73841-1.8546 5.5066-2.3003 10.607-2.6128z" />
+                <path
+                  id="path15841-2"
+                  stroke="var(--color-graphite)"
+                  stroke-width="1px"
+                  d="m39.894 23.452c-0.000335-9.877-0.82783-11.121 1.9405-13.113 2.7683-1.9921 7.3492-3.0016 7.3106-0.45231-0.03859 2.5493-4.5553 2.3134-6.4244 3.0142-1.8691 0.70077-2.4112 5.459-2.8267 10.552z" />
+                <g
+                  id="g15882"
+                  style="color:var(--color-yellow)"
+                  transform="matrix(0 -1 1 0 18.347 73.949)"
+                  stroke="var(--color-graphite)"
+                  stroke-width="1.8"
+                  fill="url(#linearGradient3068)">
+                  <path
+                    id="path14800-4"
+                    style="color:var(--color-yellow)"
+                    d="m29.702 30.083c18.6 1.6 46.132 11.217 35.8 26s-31-8.4-35.8-26z" />
+                  <path
+                    id="path14800-1-5"
+                    style="color:var(--color-yellow)"
+                    d="m29.005 31.002c11.846 9.186 26.222 27.671 12.811 33.137s-17.245-19.176-12.811-33.137z" />
+                </g>
+                <path
+                  id="path15886"
+                  stroke-width="0"
+                  d="m80.119 80.245 5.328 9.4599-8.1551-7.394z" />
+              </g>
+            </g>
+        </svg>
+      </section>
+    </header>
+
+    <main>
+      <form id="beeForm" action='/regenerate' method='post'>
+        <div id="beeThoughtWrapper">
+          <svg version='1.1' id='beeOne' xmlns="http://www.w3.org/2000/svg" viewBox='0 0 100 100'>
+            <g id='beeOneInnerWrapper'>
+              <title>Illustration of a Bee</title>
+              <defs>
+                <lineargradient
+                  id="linearGradient3068"
+                  x1="45.1"
+                  gradientUnits="userSpaceOnUse"
+                  x2="84.952"
+                  y1="61.154"
+                  y2="61.154">
+                  <stop
+                    id="stop15924-76"
+                    stop-color="var(--color-white)"
+                    offset="0" />
+                  <stop
+                    id="stop15926-1"
+                    stop-color="#a2ffff"
+                    offset="1" />
+                </lineargradient>
+                <lineargradient
+                  id="linearGradient3172"
+                  x1="45.1"
+                  gradientUnits="userSpaceOnUse"
+                  y1="61.154"
+                  gradientTransform="matrix(-1 0 0 1 94.032 -1.3066)"
+                  x2="84.952"
+                  y2="61.154">
+                  <stop
+                    id="stop15924-2"
+                    stop-color="var(--color-white)"
+                    offset="0" />
+                  <stop
+                    id="stop15926-2"
+                    stop-color="#a2ffff"
+                    offset="1" />
+                </lineargradient>
+              </defs>
+              <g
+                id="layer1">
+                <g
+                  id="g3950">
+                  <path
+                    id="path15590"
+                    stroke-width="1.8"
+                    stroke="var(--color-graphite)"
+                    transform="matrix(-1.2212 0 0 1.2212 119.97 -17.864)"
+                    d="m75.2 43.2a10.4 10.4 0 1 1 -20.8 0 10.4 10.4 0 1 1 20.8 0z" />
+                  <path
+                    id="path15590-7"
+                    stroke="var(--color-graphite)"
+                    stroke-width="1.8"
+                    fill="var(--color-yellow)"
+                    d="m39.599 58.252c2.651 12.903 14.854 24.579 27.255 26.078 12.401 1.5 20.305-7.744 17.654-20.648-2.652-12.903-14.854-24.578-27.256-26.078-12.401-1.499-20.304 7.745-17.653 20.648z" />
+                  <path
+                    id="path14800"
+                    stroke="var(--color-graphite)"
+                    stroke-width="1.8"
+                    fill="url(#linearGradient3172)"
+                    d="m48.032 44.493c-18.6 1.6-46.132 11.217-35.8 26s31-8.4 35.8-26z" />
+                  <path
+                    id="path15630"
+                    style="color:var(--color-yellow);text-transform:none;text-indent:0"
+                    d="m70.188 42.818c2.1876 1.5259 4.2297 3.3109 6.0625 5.3125-1.6387 0.12654-3.55 0.29768-5.7188 0.59375-5.408 0.73828-11.766 2.2611-14.781 4.3125l-0.125 0.09375c-2.9597 2.0849-6.8656 7.6626-9.7188 12.688-0.64133 1.1295-1.2095 2.1918-1.75 3.2188-1.4291-2.1934-2.6088-4.5238-3.4688-6.9375 2.0446-6.0895 4.5469-12.949 9.0312-16 4.5252-3.0791 12.419-3.3262 19.062-3.2812 0.8146 0.0055 0.65187-0.0039 1.4062 0zm10.281 10.906c1.1219 1.8295 2.0776 3.7435 2.8125 5.7188-1.1796 0.11523-2.4434 0.25486-3.7812 0.4375-5.6618 0.77294-12.312 2.3523-15.469 4.5l-0.15625 0.09375c-3.0986 2.1827-7.1692 8.0205-10.156 13.281-0.17312 0.3049-0.3019 0.57493-0.46875 0.875-1.8169-1.3304-3.5306-2.8346-5.0938-4.5 2.1553-6.434 4.8089-13.766 9.5625-17 4.7376-3.2236 12.982-3.4533 19.938-3.4062 1.6259 0.01099 1.4328-0.0051 2.8125 0zm4.2812 11.344c0.25363 1.6902 0.32088 3.3108 0.21875 4.8438-4.3964 0.61259-9.4961 1.8388-11.938 3.5l-0.09375 0.09375c-2.425 1.7082-5.6311 6.2579-7.9688 10.375-0.02442 0.043-0.03824 0.08211-0.0625 0.125-1.6152-0.33228-3.2105-0.82464-4.7812-1.4688 0.16236-0.46518 0.30468-0.8847 0.46875-1.375 1.6925-5.0575 3.7568-10.859 7.5-13.406 3.7077-2.5228 10.182-2.7243 15.625-2.6875 0.59678 0.004 0.47333-0.0031 1.0312 0z" />
+                  <path
+                    id="path14800-1"
+                    style="color:var(--color-yellow)"
+                    d="m48.729 45.412c-11.846 9.186-26.222 27.672-12.811 33.138s17.245-19.176 12.811-33.138z"
+                    stroke="var(--color-graphite)"
+                    stroke-width="1.8"
+                    fill="url(#linearGradient3172)" />
+                  <path
+                    id="path15841"
+                    stroke="var(--color-graphite)"
+                    stroke-width="1px"
+                    d="m29.332 30.093c-9.875-0.2-11.102-1.0525-13.15 1.675-2.0477 2.7275-3.1495 7.2871-0.6 7.3 2.5495 0.01295 2.405-4.5076 3.1434-6.3622 0.73841-1.8546 5.5066-2.3003 10.607-2.6128z" />
+                  <path
+                    id="path15841-2"
+                    stroke="var(--color-graphite)"
+                    stroke-width="1px"
+                    d="m39.894 23.452c-0.000335-9.877-0.82783-11.121 1.9405-13.113 2.7683-1.9921 7.3492-3.0016 7.3106-0.45231-0.03859 2.5493-4.5553 2.3134-6.4244 3.0142-1.8691 0.70077-2.4112 5.459-2.8267 10.552z" />
+                  <g
+                    id="g15882"
+                    style="color:var(--color-yellow)"
+                    transform="matrix(0 -1 1 0 18.347 73.949)"
+                    stroke="var(--color-graphite)"
+                    stroke-width="1.8"
+                    fill="url(#linearGradient3068)">
+                    <path
+                      id="path14800-4"
+                      style="color:var(--color-yellow)"
+                      d="m29.702 30.083c18.6 1.6 46.132 11.217 35.8 26s-31-8.4-35.8-26z" />
+                    <path
+                      id="path14800-1-5"
+                      style="color:var(--color-yellow)"
+                      d="m29.005 31.002c11.846 9.186 26.222 27.671 12.811 33.137s-17.245-19.176-12.811-33.137z" />
+                  </g>
+                  <path
+                    id="path15886"
+                    stroke-width="0"
+                    d="m80.119 80.245 5.328 9.4599-8.1551-7.394z" />
+                </g>
+              </g>
+            </g>
+          </svg>
+          <svg version="1.1" id="thoughtBubble" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+            <defs>
+              <style>
+                .text {
+                  font-family: var(--font-handwriting);
+                  font-size: 1.5rem;
+                  fill: var(--color-graphite);
+                  text-align: center;
+                }
+              </style>
+            </defs>
+            <g id="thoughtBubbleWrapper">
+              <path id="bubbleShape" fill="var(--color-white)" stroke="var(--color-graphite)" stroke-width="0.2rem" d="M105.893,12.822c-35.852,0-64.971,23.447-64.971,52.421c0,0.079,0.002,0.157,0.005,0.236c0,0.014-0.001,0.027-0.001,0.041c0,28.974,29.119,52.421,64.971,52.421s64.971-23.447,64.971-52.421c0-0.014-0.001-0.027-0.001-0.041c0-0.079,0.002-0.157,0.005-0.236C170.864,36.269,141.745,12.822,105.893,12.822z"/>
+              <circle fill="var(--color-white)" stroke="var(--color-graphite)" stroke-width="0.2rem" cx="58" cy="144" r="5"/>
+              <circle fill="var(--color-white)" stroke="var(--color-graphite)" stroke-width="0.2rem" cx="70" cy="132" r="8"/>
+              <circle fill="var(--color-white)" stroke="var(--color-graphite)" stroke-width="0.2rem" cx="82" cy="120" r="10"/>
+              <foreignObject x="25%" y="13%" width="60%" height="60%">
+                <div id="bubble-text" xmlns="http://www.w3.org/1999/xhtml" class="text">Double click me for new letters! Move me, if I'm in the way!</div>
+              </foreignObject>
+            </g>
+          </svg>
+        </div>
+      </form>      
+      
+      <svg version='1.1' id='comb' xmlns='http://www.w3.org/2000/svg'
+        xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px'
+        viewBox='0 0 727.3 833.6'
+        style='enable-background:new 0 0 727.3 833.6;' xml:space='preserve'>
+        <style type='text/css'>
+        .st0{fill:var(--color-graphite);}
+        .st1{fill:var(--color-graphite);}
+        .st2{font-size: 120px;}
+        .st3{fill:#fff;}
+      </style>
+        <g id='honeycomb' class='st0'>
+          <polygon
+            points='2.7,625.2 2.7,208.4 363.7,0 724.7,208.4 724.7,625.2 363.7,833.6' />
+        </g>
+        <g id='central-letter-group'>
+          <g id='poly1'>
+            <polygon
+              points='244.7,488.1 242.9,349.4 362.1,278.5 483.1,346.2 484.9,484.9 365.7,555.8 		' />
+            <path
+              d='M362.1,279l120.5,67.5l1.8,138.1l-118.7,70.6l-120.5-67.5l-1.8-138.1L362.1,279 M362.1,277.9l-119.7,71.2l1.8,139.3
+            l121.5,68.1l119.7-71.2L483.6,346L362.1,277.9L362.1,277.9z' />
+          </g>
+          <text id='b1' text-anchor="middle" x="363.7" y="460"
+            class='st2 st3'>{{ b1 }}</text>
+        </g>
+        <g>
+          <g id='poly2'>
+            <polygon class='st3'
+              points='123,280.9 121.2,143.4 239.4,73 359.5,140.3 361.3,277.8 243.1,348.1 		' />
+            <path class='st0'
+              d='M239.5,74.8L358,141.1l1.8,135.8L243,346.4L124.5,280l-1.8-135.8L239.5,74.8 M239.4,71.3l-119.7,71.2
+            l1.8,139.3L243,349.9l119.7-71.2l-1.8-139.3L239.4,71.3L239.4,71.3z' />
+          </g>
+          <text id='b2' transform='matrix(1 0 0 1 203.7498 251.5571)'
+            class='st2'>{{ b2 }}</text>
+        </g>
+        <g>
+          <g id='poly3'>
+            <polygon class='st3'
+              points='363.2,276.9 361.4,139.4 479.7,69 599.7,136.3 601.5,273.8 483.3,344.1 		' />
+            <path class='st0'
+              d='M479.7,70.8l118.5,66.4L600,273l-116.7,69.4L364.7,276L363,140.2L479.7,70.8 M479.6,67.3l-119.7,71.2
+            l1.8,139.3l121.5,68.1L603,274.6l-1.8-139.3L479.6,67.3L479.6,67.3z' />
+          </g>
+          <text id='b3' transform='matrix(1 0 0 1 441.4801 251.8757)'
+            class='st2'>{{ b3 }}</text>
+        </g>
+        <g>
+          <g id='poly4'>
+            <polygon class='st3'
+              points='5.3,490.9 3.5,353.4 121.7,283 241.7,350.3 243.5,487.8 125.3,558.1 		' />
+            <path class='st0'
+              d='M121.7,284.8l118.5,66.4L242,487l-116.7,69.4L6.8,490L5,354.2L121.7,284.8 M121.7,281.3L2,352.5l1.8,139.3
+            l121.5,68.1L245,488.6l-1.8-139.3L121.7,281.3L121.7,281.3z' />
+          </g>
+          <text id='b4' transform='matrix(1 0 0 1 79.6805 456.0295)'
+            class='st2'>{{ b4 }}</text>
+        </g>
+        <g>
+          <g id='poly5'>
+            <polygon class='st3'
+              points='486.2,484.5 484.4,346.9 602.6,276.6 722.6,343.8 724.4,481.4 606.2,551.7 		' />
+            <path class='st0'
+              d='M602.6,278.4l118.5,66.4l1.8,135.8L606.1,550l-118.5-66.4l-1.8-135.8L602.6,278.4 M602.5,274.9l-119.7,71.2
+            l1.8,139.3l121.5,68.1l119.7-71.2L724,343L602.5,274.9L602.5,274.9z' />
+          </g>
+          <text id='b5' transform='matrix(1 0 0 1 562.981 460.3473)'
+            class=' st2'>{{ b5 }}</text>
+        </g>
+        <g>
+          <g id='poly6'>
+            <polygon class='st3'
+              points='368.4,694.3 366.6,556.7 484.8,486.4 604.9,553.6 606.7,691.1 488.4,761.5 		' />
+            <path class='st0'
+              d='M484.9,488.1l118.5,66.4l1.8,135.8l-116.7,69.4L370,693.3l-1.8-135.8L484.9,488.1 M484.8,484.7l-119.7,71.2
+            l1.8,139.3l121.5,68.1L608.2,692l-1.8-139.3L484.8,484.7L484.8,484.7z' />
+          </g>
+          <text id='b6' transform='matrix(1 0 0 1 439.4702 671.1411)'
+            class='st2'>{{ b6 }}</text>
+        </g>
+        <g>
+          <g id='poly7'>
+            <polygon class='st3'
+              points='127.5,696.5 125.7,558.9 243.9,488.6 363.9,555.8 365.7,693.4 247.5,763.7 		' />
+            <path class='st0'
+              d='M243.9,490.3l118.5,66.4l1.8,135.8L247.5,762L129,695.6l-1.8-135.8L243.9,490.3 M243.9,486.9l-119.7,71.2
+            l1.8,139.3l121.5,68.1l119.7-71.2L365.4,555L243.9,486.9L243.9,486.9z' />
+          </g>
+          <text id='b7' transform='matrix(1 0 0 1 201.6699 671.1409)'
+            class='st2'>{{ b7 }}</text>
+        </g>
+      </svg>
+
+      <form id=input action='/' method='post'>
+        <h2 id='input-heading'>User Input</h2>
+        <section id='input-section'>
+          <button id='delete' type='button'>Delete</button>
+          <input readonly id='input-word' type='text' name='term' minlength='4'
+          required placeholder='Your word goes in here'>
+          <button id='submit' type='submit'>Try</button>
+        </section>
+      </form>
+
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+      <dialog id="dialog-definition" open>
+        <p>{{ message }}</p>
+        <form method="dialog">
+          <button value="default">Ok</button>
+        </form>
+      </dialog>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      <section id = "scores">
+        <h2>Your Score</h2>
+          <p id='score-area'>
+            {{ your_score }}
+          </p>
+
+        <h3 id='pangram-found'>+100</h3>
+      </section>
+      
+      <section id ="results">
+        <p>Finsihed playing?</p>
+        <button id="buttonCopyOrShareResult" type="button">Text
+        </button>
+      </section>
+      
+      <section id='word-list'>
+        <h2>Word List</h2>
+        <ul id='word-list-ul'>
+          {% for word in words %}
+            <li>{{ word }}<span class='icon-info-definition'>ℹ️</span></li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <dialog id="dialog-info-definition">
+        <h3>Definition</h3>
+        <p>{{ definition }}</p>
+        <form method="dialog">
+          <button value="default">Ok</button>
+        </form>
+      </dialog>
+
+      <section id='instructions'>
+        <h2>Instructions</h2>
+        <ul class='instructions'>
+          <li>Create as many words as you can by clicking on the given letters.</li>
+          <li>The word must be at least 4 letters long.</li>
+          <li>The word must contain the letter in the middle.</li>
+          <li>All letters can be used multiple times.</li>
+          <li>If the word is found in the dictionary, you're provided with its definition and the word is added to your word list.</li>
+        </ul>
+      </section>
+    </main>
+
+    <dialog open id='dialog-instructions'>
+      <h2>Instructions</h2>
+      <ul class='instructions'>
+        <li>Create as many words as you can by clicking on the given letters.</li>
+        <li>The word must be at least 4 letters long.</li>
+        <li>The word must contain the letter in the middle.</li>
+        <li>All letters can be used multiple times.</li>
+        <li>If the word is found in the dictionary, you're provided with its definition and the word is added to your word list.</li>
+      </ul>
+      <form method='dialog'>
+        <button id='close-dialog' value='default'>Got it!</button>
+      </form>
+    </dialog>
+
+    <footer>
+      <cdc-footer></cdc-footer>
+    </footer>
+  </body>
+</html>
