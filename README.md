@@ -1,4 +1,4 @@
-Urban Spelling Bee
+# Urban Spelling Bee
 
 We love playing the [Spelling Bee of the NY Times](https://www.nytimes.com/puzzles/spelling-bee).
 
