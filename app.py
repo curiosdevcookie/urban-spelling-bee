@@ -2,7 +2,8 @@ import os
 import random
 import sqlite3
 
-from flask import Flask, flash, render_template, request, session, redirect, Markup
+from flask import Flask, flash, render_template, request, session, redirect
+from markupsafe import Markup
 import string
 
 
@@ -11,27 +12,28 @@ is_local = True
 
 # Set the environment variable based on the mode:
 if is_local:
-    os.environ['PATH_TO_DATABASE'] = "dictionary.db"
-    os.environ['APP_URL'] = "http://localhost:8000"  # Local/Docker  URL
+    os.environ["PATH_TO_DATABASE"] = "dictionary.db"
+    os.environ["APP_URL"] = "http://localhost:8000"  # Local/Docker  URL
 else:
-    os.environ['APP_URL'] = "https://urban-spelling-bee.fly.dev"  # Deployed app URL
+    os.environ["APP_URL"] = "https://urban-spelling-bee.fly.dev"  # Deployed app URL
 
 
-app = Flask(__name__, static_folder='static')
-app.secret_key = 'secret key'
-app.config['SESSION_COOKIE_MAX_SIZE'] = 6000
+app = Flask(__name__, static_folder="static")
+app.secret_key = "secret key"
+app.config["SESSION_COOKIE_MAX_SIZE"] = 6000
 
-@app.route('/', methods=['GET'])
+
+@app.route("/", methods=["GET"])
 def index_get():
 
     # Create the wordlist database
     create_wordlist_table()
 
-    random_seven = session.get('random_seven')  # Retrieve random_seven from the session
+    random_seven = session.get("random_seven")  # Retrieve random_seven from the session
 
     if random_seven is None:
         generate_random_seven()
-        random_seven = session['random_seven']
+        random_seven = session["random_seven"]
 
     b1 = random_seven[0]
     b2 = random_seven[1]
@@ -45,7 +47,7 @@ def index_get():
 
     words_results = []
 
-    conn = sqlite3.connect(os.environ['PATH_TO_DATABASE'])
+    conn = sqlite3.connect(os.environ["PATH_TO_DATABASE"])
     c = conn.cursor()
 
     # append only the words from the database that can be constructed using no letter that is contained in random_rest:
@@ -57,17 +59,17 @@ def index_get():
                 words_results.append(row[0])
         except TypeError:
             print(f"Error processing row: {row}")
-    session['words_results'] = words_results
+    session["words_results"] = words_results
 
     conn.close()
     your_score = 0
     words = []
-    conn = sqlite3.connect(os.environ['PATH_TO_DATABASE'])
+    conn = sqlite3.connect(os.environ["PATH_TO_DATABASE"])
     c = conn.cursor()
 
     c.execute("SELECT word FROM wordlist")
     word_rows = c.fetchall()
-    
+
     for row in word_rows:
         word = get_word_from_wordlist(row[0])
         if word:
@@ -77,17 +79,33 @@ def index_get():
                 your_score += 100
     conn.close()
 
-    return render_template('index.html', random_seven=random_seven, words_results=words_results, b1=b1, b2=b2, b3=b3, b4=b4, b5=b5, b6=b6, b7=b7, definition=session.get('definition'), word=session.get('word'), words=words, your_score=your_score)
+    return render_template(
+        "index.html",
+        random_seven=random_seven,
+        words_results=words_results,
+        b1=b1,
+        b2=b2,
+        b3=b3,
+        b4=b4,
+        b5=b5,
+        b6=b6,
+        b7=b7,
+        definition=session.get("definition"),
+        word=session.get("word"),
+        words=words,
+        your_score=your_score,
+    )
 
-@app.route('/', methods=['POST'])
+
+@app.route("/", methods=["POST"])
 def index_post():
-    if session.get('random_seven') is None:
+    if session.get("random_seven") is None:
         generate_random_seven()
-    random_seven = session.get('random_seven')
+    random_seven = session.get("random_seven")
     term = request.form.get("term")
-    session['term'] = term
+    session["term"] = term
 
-    words_results = session.get('words_results')
+    words_results = session.get("words_results")
     if len(term) < 4:
         flash(f"Word must be at least 4 letters long 😬", "error")
         return redirect("/")
@@ -109,16 +127,16 @@ def index_post():
     get_definition(term)
     get_word_from_wordlist(term)
 
-    session['definition'] = get_definition(term)
-    definition = session.get('definition')
-    session['word'] = get_word_from_wordlist(term)
+    session["definition"] = get_definition(term)
+    definition = session.get("definition")
+    session["word"] = get_word_from_wordlist(term)
 
     # Define Python variables
-    wordToShare = session.get('word')
-    definitionToShare = session.get('definition')
+    wordToShare = session.get("word")
+    definitionToShare = session.get("definition")
 
     # Generate the share button HTML using Python variables
-    share_button_html = f'''
+    share_button_html = f"""
     <button id='buttonCopyOrShareWordDef' type='button'>Text</button>
     <script>
       function setupCopyOrShareButton(buttonId, clickHandler) {{
@@ -146,28 +164,33 @@ def index_post():
 
       setupCopyOrShareButton('buttonCopyOrShareWordDef', eitherCopyOrShareWordDef);
     </script>
-    '''
+    """
 
     # Wrap the success message in Markup to avoid HTML escaping
-    success_message = Markup(f"The word {wordToShare} was found 🤘 \n Definition: '{definitionToShare}' {share_button_html}")
+    success_message = Markup(
+        f"The word {wordToShare} was found 🤘 \n Definition: '{definitionToShare}' {share_button_html}"
+    )
     flash(success_message, "success")
 
     return redirect("/")
 
 
 def create_wordlist_table():
-    conn = sqlite3.connect(os.environ['PATH_TO_DATABASE'])
+    conn = sqlite3.connect(os.environ["PATH_TO_DATABASE"])
     c = conn.cursor()
 
-    c.execute('''
+    c.execute(
+        """
         CREATE TABLE IF NOT EXISTS wordlist (word TEXT, score INTEGER);
-    ''')
+    """
+    )
 
     conn.commit()
     conn.close()
 
+
 def insert_word_and_points(term):
-    conn = sqlite3.connect(os.environ['PATH_TO_DATABASE'])
+    conn = sqlite3.connect(os.environ["PATH_TO_DATABASE"])
     c = conn.cursor()
 
     # Check if the word already exists in the table
@@ -180,15 +203,15 @@ def insert_word_and_points(term):
         if is_pangram(term):
             score += 100
         # Insert a word and its points into the table
-        c.execute('INSERT INTO wordlist VALUES (?, ?)', (term, score))
+        c.execute("INSERT INTO wordlist VALUES (?, ?)", (term, score))
 
     conn.commit()
     conn.close()
 
 
 def generate_random_seven():
-    vowels = ['A', 'E', 'I', 'O', 'U']
-    
+    vowels = ["A", "E", "I", "O", "U"]
+
     # Generate random_seven if it's not already in the session
     alphabet = string.ascii_uppercase
 
@@ -200,12 +223,12 @@ def generate_random_seven():
 
     # random_rest = list(set(alphabet) - set(random_seven))
     # print(f"random_rest is {random_rest}")
-    
-    session['random_seven'] = random_seven
+
+    session["random_seven"] = random_seven
     # session['random_rest'] = random_rest
 
 
-@app.route('/regenerate', methods=['POST'])
+@app.route("/regenerate", methods=["POST"])
 def generate():
     generate_random_seven()
     delete_all_words()
@@ -213,11 +236,11 @@ def generate():
     return redirect("/")
 
 
- # get the definition of term from the table entries if term is in words_results:
+# get the definition of term from the table entries if term is in words_results:
 def get_definition(term):
     print(f"term is {term}")
     # get the definition from the database:
-    conn = sqlite3.connect(os.environ['PATH_TO_DATABASE'])
+    conn = sqlite3.connect(os.environ["PATH_TO_DATABASE"])
     c = conn.cursor()
 
     c.execute("SELECT definition FROM entries WHERE word=?", (term,))
@@ -231,10 +254,11 @@ def get_definition(term):
     print(definition)
     return definition
 
+
 def get_word_from_wordlist(term):
 
     print(f"term is {term}")
-    conn = sqlite3.connect(os.environ['PATH_TO_DATABASE'])
+    conn = sqlite3.connect(os.environ["PATH_TO_DATABASE"])
     c = conn.cursor()
 
     c.execute("SELECT word FROM wordlist WHERE word=?", (term,))
@@ -248,8 +272,9 @@ def get_word_from_wordlist(term):
     conn.close()
     return word
 
+
 def delete_all_words():
-    conn = sqlite3.connect(os.environ['PATH_TO_DATABASE'])
+    conn = sqlite3.connect(os.environ["PATH_TO_DATABASE"])
     c = conn.cursor()
 
     c.execute("DELETE FROM wordlist")
@@ -257,11 +282,12 @@ def delete_all_words():
     conn.commit()
     conn.close()
 
+
 def clear_session():
-    session['random_seven'] = None
-    session['term'] = None
-    session['definition'] = None
-    session['word'] = None
+    session["random_seven"] = None
+    session["term"] = None
+    session["definition"] = None
+    session["word"] = None
 
 
 def highscore(word):
@@ -269,25 +295,44 @@ def highscore(word):
     points = 0
 
     letter_scores = {
-            "A": 1, "E": 1, "I": 1, "O": 1, "U": 1, "L": 1, "N": 1, "S": 1, "T": 1, "R": 1,
-            "D": 2, "G": 2,
-            "B": 3, "C": 3, "M": 3, "P": 3,
-            "F": 4, "H": 4, "V": 4, "W": 4, "Y": 4,
-            "K": 5,
-            "J": 8, "X": 8,
-            "Q": 10, "Z": 10
-        }
+        "A": 1,
+        "E": 1,
+        "I": 1,
+        "O": 1,
+        "U": 1,
+        "L": 1,
+        "N": 1,
+        "S": 1,
+        "T": 1,
+        "R": 1,
+        "D": 2,
+        "G": 2,
+        "B": 3,
+        "C": 3,
+        "M": 3,
+        "P": 3,
+        "F": 4,
+        "H": 4,
+        "V": 4,
+        "W": 4,
+        "Y": 4,
+        "K": 5,
+        "J": 8,
+        "X": 8,
+        "Q": 10,
+        "Z": 10,
+    }
 
     points = sum(letter_scores.get(letter, 0) for letter in word)
 
     return points
 
+
 def is_pangram(term):
-    random_seven = session.get('random_seven')
+    random_seven = session.get("random_seven")
     return all(char in term for char in random_seven)
 
 
-@app.route('/screencast', methods=['GET'])
+@app.route("/screencast", methods=["GET"])
 def screencast_get():
-    return render_template('screencast.html')
-
+    return render_template("screencast.html")
